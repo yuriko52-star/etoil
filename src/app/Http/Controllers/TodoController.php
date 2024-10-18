@@ -3,11 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Todo;
 
 class TodoController extends Controller
 {
     public function index()
+    {   $todos =Todo::all();
+        return view('index',compact('todos'));
+    }
+    public function store (Request $request)
     {
-        return view('index');
+        $todo=$request->only(['content']);
+        TOdo::create($todo);
+        return redirect('/');
     }
 }
