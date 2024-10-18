@@ -8,7 +8,7 @@
     background-color: #f8d7da;
     color: #842029;
     border-color: #f5c2c7;
-    
+    padding: 10px 0;
 }
 .todo__alert--danger ul {
     margin: 0;
