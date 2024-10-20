@@ -22,9 +22,10 @@
         @endif
     </div>
     <div class="category__content">
-        <form action="" class="create-form" method="">
+        <form action="/categories" class="create-form" method="post">
+            @csrf
             <div class="create-form__item">
-                <input type="text" class="create-form__item-input">
+                <input type="text" class="create-form__item-input" name="name"value="{{ old('name') }}">
             </div>
             <div class="create-form__button">
                 <button class="create-form__button-submit"type="submit">作成</button>
@@ -41,7 +42,7 @@
                 <td class="category-table__item">
                     <form action="" class="update-form" method="">
                         <div class="update-form__item">
-                            <input type="text" class="update-form__item-input" name="" value="">
+                            <input type="text" class="update-form__item-input" name="name" value="{{ $category['name'] }}">
                         </div>
                         <div class="update-form__button">
                             <button class="update-form__button-submit"type="submit">更新</button>
