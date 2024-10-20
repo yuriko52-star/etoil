@@ -30,9 +30,12 @@
     <form action="/todos" class="create-form" method="post">
         @csrf
       <div class="create-form__item">
-        <input type="text" class="create-form__item-input"name="content" value="">
-            <select class="create-form__item-select">
-                <option value="" >カテゴリ</option>
+        <input type="text" class="create-form__item-input"name="content" value="{{ old('content') }}">
+            <select class="create-form__item-select" name="category_id">
+                <option >カテゴリ</option>
+                @foreach($categories as $category)
+                <option value="{{ $category['id'] }}">{{ $category['name'] }}</option>
+                @endforeach
             </select>
         </div>
         <div class="create-form__button">
@@ -42,11 +45,15 @@
        <div class="section__title">
             <h2>Todo検索</h2>
        </div>
-        <form action="" class="search-form" method="">
+        <form action="/todos/search" class="search-form" method="get">
+            @csrf
           <div class="search-form__item">
-            <input type="text" class="search-form__item-input">
-            <select class="search-form__item-select">
-                <option value="">カテゴリ</option>
+            <input type="text" class="search-form__item-input"name="keyword" value="{{ old('keyword') }}">
+            <select class="search-form__item-select"name="category_id">
+                <option>カテゴリ</option>
+                @foreach($categories as $category)
+                <option value="{{ $category['id'] }}">{{ $category['name'] }}</option>
+                @endforeach
             </select>
         </div>
         <div class="search-form__button">
@@ -72,7 +79,7 @@
                             <input type="hidden" name="id" value="{{ $todo['id'] }}">
                         </div>
                         <div class="update-form__item">
-                            <p class="update-form__item-p">Category 1</p>
+                            <p class="update-form__item-p">{{$todo['category']['name']}}</p>
                         </div>
                         <div class="update-form__button">
                             <button class="update-form__button-submit"type="submit">更新</button>
